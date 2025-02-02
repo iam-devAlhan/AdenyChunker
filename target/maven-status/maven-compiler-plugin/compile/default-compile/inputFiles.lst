@@ -1,4 +1,5 @@
 /home/iam-devalhan/NetBeansProjects/adenychunker/src/main/java/module-info.java
-/home/iam-devalhan/NetBeansProjects/adenychunker/src/main/java/com/adenychunker/SecondaryController.java
+/home/iam-devalhan/NetBeansProjects/adenychunker/src/main/java/com/adenychunker/MainController.java
 /home/iam-devalhan/NetBeansProjects/adenychunker/src/main/java/com/adenychunker/App.java
-/home/iam-devalhan/NetBeansProjects/adenychunker/src/main/java/com/adenychunker/PrimaryController.java
+/home/iam-devalhan/NetBeansProjects/adenychunker/src/main/java/com/adenychunker/classes/algorithms/HuffmanCoding.java
+/home/iam-devalhan/NetBeansProjects/adenychunker/src/main/java/com/adenychunker/classes/utils/ZipCompression.java

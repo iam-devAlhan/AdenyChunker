@@ -1,4 +1,5 @@
 com/adenychunker/App.class
-com/adenychunker/SecondaryController.class
-com/adenychunker/PrimaryController.class
+com/adenychunker/classes/algorithms/HuffmanCoding.class
+com/adenychunker/MainController.class
 module-info.class
+com/adenychunker/classes/utils/ZipCompression.class

@@ -1,14 +1,17 @@
-
 package com.adenychunker;
 
-import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
+import javafx.scene.control.Button;
 
 public class MainController {
-    @FXML
-    private void switchToSecondary() throws IOException {
-        
-    }
-}
 
+    @FXML
+    private Button exitBtn;
+
+    @FXML
+    void exitButtonAction(ActionEvent event) {
+        System.exit(0);
+    }   
+
+}
