@@ -1,17 +1,22 @@
 package com.adenychunker;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
+import javafx.scene.control.Label;
 
 public class MainController {
+    
+    @FXML
+    private Label appLabel;
+    
+    @FXML
+    private Pane paneBox01;
 
     @FXML
-    private Button exitBtn;
+    private Label textMid;
 
     @FXML
-    void exitButtonAction(ActionEvent event) {
-        System.exit(0);
-    }   
+    private Label textSm;
+    
 
 }

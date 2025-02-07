@@ -1,0 +1,12 @@
+#pane01 {
+    -fx-background-color: darkcyan;
+}
+#pane01:hover {
+    -fx-background-color: cyan;
+}
+#text-mid {
+    -fx-text-fill: #ffff;
+}
+#text-sm {
+    -fx-text-fill: #ffff;
+}
