@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,14 +10,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adenychunker.MainController">
    <children>
-      <Label id="appLabel" fx:id="appLabel" layoutX="36.0" layoutY="50.0" prefHeight="73.0" prefWidth="522.0" stylesheets="@application.css" text="Welcome to our app, use any compression utility ">
+      <Label id="appLabel" fx:id="appLabel" layoutX="22.0" prefHeight="73.0" prefWidth="522.0" stylesheets="@application.css" text="Welcome to our app, use any compression utility ">
          <font>
             <Font name="FreeSans" size="24.0" />
          </font>
       </Label>
-      <Pane id="pane01" fx:id="paneBox01" layoutX="36.0" layoutY="133.0" prefHeight="235.0" prefWidth="187.0" stylesheets="@application.css">
+      <Pane id="pane01" fx:id="paneBox01" layoutX="21.0" layoutY="64.0" prefHeight="235.0" prefWidth="187.0" stylesheets="@application.css">
          <children>
-            <Label id="text-mid" fx:id="textMid" layoutX="30.0" layoutY="103.0" prefHeight="111.0" prefWidth="141.0" text="Compress Text files like .csv, .xml, .xlsx" textAlignment="CENTER" wrapText="true">
+            <Label id="text-mid" fx:id="textMid" layoutX="28.0" layoutY="103.0" prefHeight="111.0" prefWidth="141.0" text="Compress Text files like .csv, .xml, .xlsx" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="FreeSans" size="18.0" />
                </font>
@@ -33,9 +34,9 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane id="pane01" fx:id="paneBox011" layoutX="229.0" layoutY="133.0" prefHeight="235.0" prefWidth="170.0" stylesheets="@application.css">
+      <Pane id="pane01" fx:id="paneBox02" layoutX="223.0" layoutY="64.0" prefHeight="235.0" prefWidth="170.0" stylesheets="@application.css">
          <children>
-            <Label id="text-mid" fx:id="textMid1" layoutX="15.0" layoutY="113.0" prefHeight="111.0" prefWidth="141.0" text="Zip your Files using our Zip Compression Tool" textAlignment="CENTER" wrapText="true">
+            <Label id="text-mid" fx:id="textMid1" layoutX="14.0" layoutY="113.0" prefHeight="111.0" prefWidth="141.0" text="Zip your Files using our Zip Compression Tool" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="FreeSans" size="18.0" />
                </font>
@@ -47,9 +48,9 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane id="pane01" fx:id="paneBox0111" layoutX="406.0" layoutY="133.0" prefHeight="235.0" prefWidth="170.0" stylesheets="@application.css">
+      <Pane id="pane01" fx:id="paneBox03" layoutX="409.0" layoutY="64.0" prefHeight="235.0" prefWidth="170.0" stylesheets="@application.css">
          <children>
-            <Label id="text-mid" fx:id="textMid11" layoutX="15.0" layoutY="112.0" prefHeight="111.0" prefWidth="141.0" text="Compress your video of any format like .mkv, .mp4" textAlignment="CENTER" wrapText="true">
+            <Label id="text-mid" fx:id="textMid11" layoutX="15.0" layoutY="111.0" prefHeight="111.0" prefWidth="141.0" text="Compress your video of any format like .mkv, .mp4" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="FreeSans" size="18.0" />
                </font>
@@ -61,5 +62,12 @@
             </ImageView>
          </children>
       </Pane>
+      <Button id="btnOnAction" fx:id="btnComText" layoutX="40.0" layoutY="312.0" mnemonicParsing="false" onAction="#textCompressionHandler" prefHeight="41.0" prefWidth="152.0" stylesheets="@application.css" text="Compress Text">
+         <font>
+            <Font name="FreeSans" size="13.0" />
+         </font>
+      </Button>
+      <Button id="btnOnAction" fx:id="btnZipFile" layoutX="233.0" layoutY="312.0" mnemonicParsing="false" onAction="#zipFileHandler" prefHeight="41.0" prefWidth="152.0" stylesheets="@application.css" text="Zip your files" />
+      <Button id="btnOnAction" fx:id="btnComVideo" layoutX="420.0" layoutY="312.0" mnemonicParsing="false" onAction="#videoCompressionHandler" prefHeight="41.0" prefWidth="152.0" stylesheets="@application.css" text="Compress video" />
    </children>
 </AnchorPane>

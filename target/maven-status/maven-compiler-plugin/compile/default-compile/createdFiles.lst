@@ -1,5 +1,9 @@
-com/adenychunker/App.class
 com/adenychunker/MainController.class
+com/adenychunker/classes/algorithms/Huffman$Node.class
+com/adenychunker/classes/algorithms/Huffman.class
+com/adenychunker/VideoComController.class
+com/adenychunker/FileEncoderController.class
+com/adenychunker/FileZipperController.class
+com/adenychunker/App.class
 module-info.class
-com/adenychunker/classes/algorithms/HuffmanCoding.class
 com/adenychunker/classes/utils/ZipCompression.class
