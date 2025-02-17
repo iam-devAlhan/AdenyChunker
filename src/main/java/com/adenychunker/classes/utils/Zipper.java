@@ -1,4 +1,4 @@
-package lzw;
+package com.adenychunker.classes.utils;
 
 import java.io.File;
 import java.io.FileInputStream;

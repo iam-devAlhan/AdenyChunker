@@ -1,9 +1,10 @@
+com/adenychunker/classes/utils/Zipper.class
 com/adenychunker/MainController.class
 com/adenychunker/classes/algorithms/Huffman$Node.class
 com/adenychunker/classes/algorithms/Huffman.class
+lzw/LempelZivWelch.class
 com/adenychunker/VideoComController.class
 com/adenychunker/FileEncoderController.class
 com/adenychunker/FileZipperController.class
 com/adenychunker/App.class
 module-info.class
-com/adenychunker/classes/utils/ZipCompression.class

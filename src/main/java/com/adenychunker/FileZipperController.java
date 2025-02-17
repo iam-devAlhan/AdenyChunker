@@ -6,6 +6,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import com.adenychunker.classes.utils.Zipper;
+import java.io.File;
+import javafx.collections.ObservableList;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class FileZipperController {
 
@@ -26,10 +32,17 @@ public class FileZipperController {
 
     @FXML
     private ListView<String> listView;
+    
+    private File file;
+    DirectoryChooser dc = new DirectoryChooser();
+    FileChooser fc = new FileChooser();
 
     @FXML
     void fileAdder(ActionEvent event) {
-
+        if (file != null) {
+            ObservableList<String> items = listView.getItems();
+            items.add(file.getAbsolutePath());
+        }
     }
 
     @FXML
@@ -43,8 +56,11 @@ public class FileZipperController {
     }
 
     @FXML
-    void filechooseHandler(ActionEvent event) {
-
+    void filechooseHandler(ActionEvent event) throws IOException {
+        fc.setTitle("Choose file to add: ");
+        file = fc.showOpenDialog(new Stage());
+        fileUrlLabel.setText(file.getAbsolutePath());
+        
     }
     
     @FXML
