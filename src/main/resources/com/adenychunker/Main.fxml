@@ -17,7 +17,7 @@
       </Label>
       <Pane id="pane01" fx:id="paneBox01" layoutX="21.0" layoutY="64.0" prefHeight="235.0" prefWidth="187.0" stylesheets="@application.css">
          <children>
-            <Label id="text-mid" fx:id="textMid" layoutX="28.0" layoutY="103.0" prefHeight="111.0" prefWidth="141.0" text="Compress Text files like .csv, .xml, .xlsx" textAlignment="CENTER" wrapText="true">
+            <Label id="text-mid" fx:id="textMid" layoutX="28.0" layoutY="103.0" prefHeight="111.0" prefWidth="141.0" text="Encode your Text files like .csv, .txt, .json" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="FreeSans" size="18.0" />
                </font>
@@ -62,7 +62,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Button id="btnOnAction" fx:id="btnComText" layoutX="40.0" layoutY="312.0" mnemonicParsing="false" onAction="#textCompressionHandler" prefHeight="41.0" prefWidth="152.0" stylesheets="@application.css" text="Compress Text">
+      <Button id="btnOnAction" fx:id="btnComText" layoutX="40.0" layoutY="312.0" mnemonicParsing="false" onAction="#textCompressionHandler" prefHeight="41.0" prefWidth="152.0" stylesheets="@application.css" text="Encode your Text file">
          <font>
             <Font name="FreeSans" size="13.0" />
          </font>

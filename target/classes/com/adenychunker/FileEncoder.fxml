@@ -2,19 +2,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adenychunker.FileEncoderController">
    <children>
-      <Label layoutX="24.0" layoutY="31.0" prefHeight="36.0" prefWidth="554.0" text="Compress, encode and decode your text file and compressed, Useful for .csv, .xlsx, .json files" wrapText="true" />
-      <Button id="fileChooser" fx:id="filechooserBtn" layoutX="24.0" layoutY="83.0" mnemonicParsing="false" onAction="#onFileUpload" text="Choose File" />
-      <Button id="encoder" fx:id="encoderBtn" layoutX="24.0" layoutY="157.0" mnemonicParsing="false" onAction="#encodeDataFromFile" text="Encode" />
-      <ProgressBar id="encoderDisplay" fx:id="encodingProgress" layoutX="378.0" layoutY="162.0" prefWidth="200.0" progress="0.0" />
-      <Button id="decoder" fx:id="decoderBtn" layoutX="23.0" layoutY="200.0" mnemonicParsing="false" onAction="#decodeDataFromFile" text="Decode" />
-      <ProgressBar id="decoderDisplay" fx:id="decodingProgress" layoutX="378.0" layoutY="203.0" prefWidth="200.0" progress="0.0" />
-      <Label id="encodingLabel" fx:id="encodingProcess" layoutX="237.0" layoutY="163.0" prefHeight="18.0" prefWidth="119.0" text="Encoding Data: %" />
-      <Label id="decodingLabel" fx:id="decodingProcess" layoutX="237.0" layoutY="204.0" prefHeight="18.0" prefWidth="119.0" text="Decoding Data: %" />
+      <Label layoutX="24.0" layoutY="31.0" prefHeight="36.0" prefWidth="554.0" text="Compress, encode and decode your text file and compressed, Useful for .csv, .txt, .json files" wrapText="true" />
+      <Button id="encoder" fx:id="encoderBtn" layoutX="24.0" layoutY="85.0" mnemonicParsing="false" onAction="#encodeDataFromFile" prefHeight="26.0" prefWidth="181.0" text="Upload file to encode" />
+      <Button id="decoder" fx:id="decoderBtn" layoutX="26.0" layoutY="174.0" mnemonicParsing="false" onAction="#decodeDataFromFile" prefHeight="26.0" prefWidth="181.0" text="Upload file to decode" />
       <Button id="backBtn" fx:id="backBtn" layoutX="26.0" layoutY="345.0" mnemonicParsing="false" onAction="#backToHomePage" text="Back" />
+      <Label fx:id="filePathLabel" layoutX="26.0" layoutY="128.0" prefHeight="36.0" prefWidth="537.0" text="File path" />
+      <Label fx:id="filePathLabel1" layoutX="26.0" layoutY="212.0" prefHeight="36.0" prefWidth="537.0" text="File path" />
    </children>
 </AnchorPane>

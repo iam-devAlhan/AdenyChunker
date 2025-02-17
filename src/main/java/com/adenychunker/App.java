@@ -20,6 +20,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("Main"));
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
+        stage.setTitle("AdenyChunker(Beta) - Encode your text files, compress video and archives");
         stage.show();
     }
 

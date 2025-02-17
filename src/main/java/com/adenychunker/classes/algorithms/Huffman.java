@@ -4,11 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.PriorityQueue;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import javax.swing.JOptionPane;
+import java.io.*;
+import javax.swing.*;
+
 
 public class Huffman {
     class Node implements Comparable<Node> {
@@ -33,10 +31,7 @@ public class Huffman {
     private HashMap<Character, String> encoder;
     private HashMap<String, Character> decoder;
 
-    public Huffman(String source) {
-        getCharacterFrequency(source);
-        createHuffmanTree();
-    }
+   
     private void getCharacterFrequency(String feeder) {
         for (int i = 0; i < feeder.length(); i++) {
             char cc = feeder.charAt(i);
@@ -85,14 +80,15 @@ public class Huffman {
         initializeEncoderandDecoder(curr.right, output+"1");
     }
 
-    public String encoder(String source) {
+    private String encoder(String source) {
         String answer = "";
         for (int i = 0; i < source.length(); i++) {
             answer = answer + encoder.get(source.charAt(i));
         }
         return answer;
     }
-    public String decoder(String codedString) {
+    
+    private String decoder(String codedString) {
         String ans = "";
         String key = "";
         for (int i = 0; i < codedString.length(); i++) {
@@ -104,51 +100,91 @@ public class Huffman {
         }
         return ans;
     }
+    
+    public void encodeFromFile(String fileName, String outputFile) throws IOException {
+    try (BufferedReader bf = new BufferedReader(new FileReader(fileName))) {
+        String line;
+        StringBuilder content = new StringBuilder();
+        while ((line = bf.readLine()) != null) {
+            content.append(line).append("\n");
+        }
 
-    public void saveToFile(String filename, String encodedText) throws IOException {
-        // Writes Data in ctxt format, This format is intended for saving encoded data into a file
-        try (FileWriter fw = new FileWriter(filename + ".ctxt");) {
-            for (Map.Entry<Character,Integer> entry: fmap.entrySet()) {
-                fw.write(entry.getKey() + ":" + entry.getValue() + "\n");
+        getCharacterFrequency(content.toString().trim());
+        String encoded = encoder(content.toString().trim());
+
+        ByteArrayOutputStream byteArrOut = new ByteArrayOutputStream();
+        int extraBits = 0; // Keep track of padding bits
+
+        for (int i = 0; i < encoded.length(); i += 8) {
+            String byteString = encoded.substring(i, Math.min(i + 8, encoded.length()));
+            extraBits = 8 - byteString.length(); // Track padding bits if last byte
+            byteString += "0".repeat(extraBits); // Ensure full 8 bits
+            byte byteValue = (byte) Integer.parseInt(byteString, 2);
+            byteArrOut.write(byteValue & 0xFF);
+        }
+
+        try (FileOutputStream fs = new FileOutputStream(outputFile);
+             DataOutputStream oos = new DataOutputStream(fs)) {
+
+            oos.writeInt(fmap.size());
+            for (Map.Entry<Character, Integer> entry : fmap.entrySet()) {
+                oos.writeByte(entry.getKey());  // 1 byte for character
+                oos.writeShort(entry.getValue()); // 2 bytes for frequency
             }
-            fw.write("=====\n");
-            fw.write(encodedText);
-            System.out.println("File Written and saved successfully!! ");
-            JOptionPane.showMessageDialog(null, "File Written Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-            fw.close();
+
+            oos.writeInt(encoded.length()); // Original bit-length for exact decoding
+            oos.writeInt(extraBits); // Store padding information
+            oos.write(byteArrOut.toByteArray()); // Store compressed data
+            JOptionPane.showMessageDialog(null, "Successfully written to: " + outputFile, "Success", JOptionPane.INFORMATION_MESSAGE);
         }
-        catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Error writing file", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-         
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(null, "Failed to encode file. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
-    public String decodeEncodedFile(String encodedFile) throws IOException {
-        // Decode the file
-        boolean isEncoding = false;
-        FileReader freader = new FileReader(encodedFile);
-        try (BufferedReader buffReader = new BufferedReader(freader)) {
-            fmap.clear();
-            String line;
-            StringBuilder encoded = new StringBuilder();
-            while ((line = buffReader.readLine()) != null) {
-                if (line.equals("=====")) {
-                    isEncoding = true;
-                    continue;
-                }
-                if (isEncoding) {
-                    encoded.append(line);
-                }
-                else {
-                    String[] parts = line.split(":");
-                    fmap.put(parts[0].charAt(0), Integer.parseInt(parts[1]));
-                }
-            }
-            createHuffmanTree();
-            return decoder(encoded.toString());
+}
+
+public void decodeToFile(String encodedFile, String outputFile) throws IOException {
+    try (FileInputStream fs = new FileInputStream(encodedFile);
+         DataInputStream dis = new DataInputStream(fs)) {
+
+        int freqSize = dis.readInt();
+        fmap.clear();
+
+        for (int i = 0; i < freqSize; i++) {
+            char key = (char) dis.readByte(); // Read character as a byte
+            int value = dis.readShort(); // Read frequency count as short
+            fmap.put(key, value);
         }
-        catch (IOException er) {
-            JOptionPane.showMessageDialog(null, er, "Error", JOptionPane.ERROR_MESSAGE);
-            return null;
+
+        createHuffmanTree();
+        int encodedLength = dis.readInt();
+        int extraBits = dis.readInt(); // Read padding information
+
+        byte[] encodedBytes = dis.readAllBytes();
+        StringBuilder binaryString = new StringBuilder();
+
+        for (byte b : encodedBytes) {
+            binaryString.append(String.format("%8s", Integer.toBinaryString(b & 0xFF)).replace(' ', '0'));
         }
+
+        // Remove padding
+        if (extraBits > 0) {
+            binaryString.setLength(binaryString.length() - extraBits);
+        }
+
+        String decodedText = decoder(binaryString.toString());
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
+            writer.write(decodedText);
+        }
+
+        JOptionPane.showMessageDialog(null, "File successfully decoded to: " + outputFile, "Success", JOptionPane.INFORMATION_MESSAGE);
+
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(null, "Failed to decode file. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
-} 
+}
+
+}
+    
+    
+
