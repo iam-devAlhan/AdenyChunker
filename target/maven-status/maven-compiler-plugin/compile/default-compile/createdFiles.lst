@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 lzw\Zipper.class
 com\adenychunker\FileEncoderController.class
 com\adenychunker\VideoComController.class
@@ -9,3 +10,15 @@ lzw\LempelZivWelch.class
 module-info.class
 com\adenychunker\MainController.class
 com\adenychunker\App.class
+=======
+com/adenychunker/classes/utils/Zipper.class
+com/adenychunker/MainController.class
+com/adenychunker/classes/algorithms/Huffman$Node.class
+com/adenychunker/classes/algorithms/Huffman.class
+lzw/LempelZivWelch.class
+com/adenychunker/VideoComController.class
+com/adenychunker/FileEncoderController.class
+com/adenychunker/FileZipperController.class
+com/adenychunker/App.class
+module-info.class
+>>>>>>> 07b69e2648889e78370d270af96cd4443a358473

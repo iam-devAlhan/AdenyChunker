@@ -34,7 +34,7 @@ public class MainController {
 
     @FXML
     void videoCompressionHandler(ActionEvent event) throws IOException {
-        App.setRoot("VideoCom");
+//        App.setRoot("VideoCom");
     }
 
     @FXML

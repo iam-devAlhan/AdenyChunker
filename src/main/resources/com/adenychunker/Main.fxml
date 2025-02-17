@@ -22,11 +22,6 @@
                   <Font name="FreeSans" size="18.0" />
                </font>
             </Label>
-            <Label id="text-sm" fx:id="textSm" layoutX="55.0" layoutY="13.0" prefHeight="15.0" prefWidth="91.0" text="In Development" textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font name="FreeSans" size="12.0" />
-               </font>
-            </Label>
             <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="54.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@assets/icons8-document-96.png" />
@@ -60,6 +55,11 @@
                   <Image url="@assets/icons8-video-96(1).png" />
                </image>
             </ImageView>
+            <Label id="text-sm" fx:id="textSm1" layoutX="41.0" layoutY="15.0" prefHeight="15.0" prefWidth="91.0" text="In Development" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="FreeSans" size="12.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Button id="btnOnAction" fx:id="btnComText" layoutX="40.0" layoutY="312.0" mnemonicParsing="false" onAction="#textCompressionHandler" prefHeight="41.0" prefWidth="152.0" stylesheets="@application.css" text="Encode your Text file">
