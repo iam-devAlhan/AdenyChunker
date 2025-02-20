@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
+import javax.swing.JOptionPane;
 
 public class MainController {
     
@@ -34,7 +35,8 @@ public class MainController {
 
     @FXML
     void videoCompressionHandler(ActionEvent event) throws IOException {
-//        App.setRoot("VideoCom");
+        /*  This is set to be under for further. Video Compression is under development*/
+        JOptionPane.showMessageDialog(null, "Video Compression is under development. Stay tuned!!", "Information", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @FXML

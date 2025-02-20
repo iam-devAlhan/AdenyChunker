@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
+import javax.swing.JOptionPane;
 
 
 public class Zipper {
@@ -42,11 +43,14 @@ public class Zipper {
         while( (entry=zin.getNextEntry())!=null){
             int len;
             byte[] data=new byte[1024];
-            FileOutputStream fos=new FileOutputStream(dir+"\\"+entry.getName());
-            while((len=zin.read(data)) !=-1){
-                fos.write(data, 0, len);
+            try (FileOutputStream fos = new FileOutputStream(dir+ File.separator + entry.getName())) {
+                while((len=zin.read(data)) !=-1){
+                    fos.write(data, 0, len);
+                }
             }
-            fos.close();
+            catch(FileNotFoundException e) {
+                JOptionPane.showMessageDialog(null, "Error while unzipping the archive. Please specify the folder for destination to zip the files", "Error", JOptionPane.ERROR_MESSAGE);
+            }
             zin.closeEntry();
         }
         zin.close();

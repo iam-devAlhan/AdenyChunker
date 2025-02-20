@@ -36,6 +36,7 @@ public class FileZipperController {
     private File file;
     DirectoryChooser dc = new DirectoryChooser();
     FileChooser fc = new FileChooser();
+    Zipper zipper;
 
     @FXML
     void fileAdder(ActionEvent event) {
@@ -52,7 +53,7 @@ public class FileZipperController {
 
     @FXML
     void fileOnCompress(ActionEvent event) {
-
+        
     }
 
     @FXML
