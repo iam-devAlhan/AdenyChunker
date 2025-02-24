@@ -10,6 +10,9 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import com.adenychunker.classes.algorithms.Huffman;
+import com.adenychunker.classes.algorithms.LempelZivWelch;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import javax.swing.JOptionPane;
 
@@ -41,8 +44,16 @@ public class FileEncoderController {
     FileChooser fileChooser = new FileChooser();
 //    Huffman Object used for encoding and decoding data
     Huffman huffman = new Huffman();
+    LempelZivWelch lzw = new LempelZivWelch();
     private File selectedfile;
     
+//    Initializing for choicebox items
+    @FXML
+    private void initialize() {
+        ObservableList<String> options = FXCollections.observableArrayList("Huffman", "LZW");
+        choiceBoxforAlgo.setValue("Huffman");
+        choiceBoxforAlgo.setItems(options);
+    }
     
     @FXML
     void backToHomePage(ActionEvent event) throws IOException {
@@ -62,11 +73,10 @@ public class FileEncoderController {
         String outputDirPath = outputDir.getAbsolutePath();
         String inputFilePath = selectedfile.getAbsolutePath() + File.separator;
         String fileName = selectedfile.getName().replaceFirst("\\.[^.]+$","");
-        if (selectedfile != null) {
-            filePathLabel1.setText(selectedfile.getAbsolutePath());
-        }
-      
-        if (fileExtension.endsWith(".ctxt")) {
+        String algo = choiceBoxforAlgo.getValue();
+        switch (algo) {
+            case "Huffman":
+                if (fileExtension.endsWith(".ctxt")) {
             huffman.decodeToFile(inputFilePath, outputDirPath + File.separator + fileName + "-decoded" + ".txt");
         } else if (fileExtension.endsWith(".ccsv")) {
             huffman.decodeToFile(inputFilePath, outputDirPath + File.separator + fileName + "-decoded" +  ".csv");
@@ -75,31 +85,65 @@ public class FileEncoderController {
         } else {
             JOptionPane.showMessageDialog(null, "Error opening the file", "Error while decoding", JOptionPane.ERROR_MESSAGE);
         }
+                break;
+            case "LZW":
+               if (fileExtension.endsWith(".ltxt")) {
+                   lzw.decode(inputFilePath, outputDirPath + File.separator + fileName + "-decodedbylzw" + ".txt");
+               }
+               else if (fileExtension.endsWith(".lcsv")) {
+                   lzw.decode(inputFilePath, outputDirPath + File.separator + fileName + "-decodedbylzw" + ".csv");
+               } 
+               else if (fileExtension.endsWith(".ljson")) {
+                   lzw.decode(inputFilePath, outputDirPath + File.separator + fileName + "-decodedbylzw" + ".json");
+               }
+               else {
+                JOptionPane.showMessageDialog(null, "Error opening the file", "Error while decoding", JOptionPane.ERROR_MESSAGE);
+                }
+                break;
+            default:
+                throw new AssertionError();
+        }
+        if (selectedfile != null) {
+            filePathLabel1.setText(selectedfile.getAbsolutePath());
+        }
+      
+       
         
     }
 
-//    Encode your file by uploading .txt, .csv, .json
+//    Encode your file by uploading .txt, .csv, .json for huffman and lzw.
     @FXML
     void encodeDataFromFile(ActionEvent event) throws IOException {
         selectedfile = getFile(true);
         dirChooser.setTitle("Choose directory to save your encoded file");
-        File outputDir = dirChooser.showDialog(new Stage());
-        String outputDirPath = outputDir.getAbsolutePath() + File.separator;
+        
         String inputFilePath = selectedfile.getAbsolutePath();
         String fileName = selectedfile.getName().replaceFirst("\\.[^.]+$","");
         if (selectedfile != null) {
             filePathLabel.setText(selectedfile.getAbsolutePath());
         }
         String fileExtension = selectedfile.getPath();
-        if (fileExtension.endsWith(".txt")) {
-            huffman.encodeFromFile(inputFilePath, outputDirPath + File.separator + fileName + "-encoded" + ".ctxt");
-        } else if (fileExtension.endsWith(".csv")) {
-            huffman.encodeFromFile(inputFilePath, outputDirPath +  File.separator + fileName + "-encoded" + ".ccsv");
-        } else if (fileExtension.endsWith(".json")) {
-            huffman.encodeFromFile(inputFilePath, outputDirPath + File.separator + fileName + "-encoded" + ".cjson");
-        } else {
-            JOptionPane.showMessageDialog(null, "Error opening the file", "Error while encoding", JOptionPane.ERROR_MESSAGE);
+        String algo = choiceBoxforAlgo.getValue();
+        switch (algo) {
+            case "Huffman":
+                File outputDir = dirChooser.showDialog(new Stage());
+                String outputDirPath = outputDir.getAbsolutePath() + File.separator;
+                if (fileExtension.endsWith(".txt")) {
+                    huffman.encodeFromFile(inputFilePath, outputDirPath + File.separator + fileName + "-encoded" + ".ctxt");
+                } else if (fileExtension.endsWith(".csv")) {
+                    huffman.encodeFromFile(inputFilePath, outputDirPath +  File.separator + fileName + "-encoded" + ".ccsv");
+                } else if (fileExtension.endsWith(".json")) {
+                    huffman.encodeFromFile(inputFilePath, outputDirPath + File.separator + fileName + "-encoded" + ".cjson");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error opening the file", "Error while encoding", JOptionPane.ERROR_MESSAGE);
+                }
+                break;
+            case "LZW":
+                lzw.encode(inputFilePath);
+            default:
+                JOptionPane.showMessageDialog(null, "You didn't selected option or choose any file: ");
         }
+        
     }
 
 
@@ -116,9 +160,12 @@ public class FileEncoderController {
             FileChooser.ExtensionFilter ctextFilter = new FileChooser.ExtensionFilter("CText files, *.ctxt", "*.ctxt");
             FileChooser.ExtensionFilter ccsvFilter = new FileChooser.ExtensionFilter("CCSV files, *.ccsv", "*.ccsv");
             FileChooser.ExtensionFilter cjsonFilter = new FileChooser.ExtensionFilter("CJson files, *.cjson", "*.cjson");
+            FileChooser.ExtensionFilter ltextFilter = new FileChooser.ExtensionFilter("LText files, *.ltxt", "*.ltxt");
+            FileChooser.ExtensionFilter lcsvFilter = new FileChooser.ExtensionFilter("LCSV files, *.lcsv", "*.lcsv");
+            FileChooser.ExtensionFilter ljsonFilter = new FileChooser.ExtensionFilter("LJson files, *.ljson", "*.ljson");
             fileChooser.getExtensionFilters().clear();
-            fileChooser.getExtensionFilters().addAll(ctextFilter, ccsvFilter, cjsonFilter);
-            fileChooser.setTitle("Select .ctxt, .ccsv or .cjson for decoding");
+            fileChooser.getExtensionFilters().addAll(ctextFilter, ccsvFilter, cjsonFilter, ltextFilter, lcsvFilter, ljsonFilter);
+            fileChooser.setTitle("Select .ctxt, .ccsv, .cjson, .ltxt, .lcsv, .ljson for decoding");
         }
         File file = fileChooser.showOpenDialog(new Stage());
         return file;

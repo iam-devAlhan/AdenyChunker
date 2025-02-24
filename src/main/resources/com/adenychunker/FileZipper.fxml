@@ -7,22 +7,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adenychunker.FileZipperController">
-    <stylesheets>
-        <URL value="@/com/adenychunker/application.css" />
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" stylesheets="@application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adenychunker.FileZipperController">
    <children>
-      <Label layoutX="25.0" layoutY="28.0" prefHeight="45.0" prefWidth="188.0" text="Choose files to archive">
+      <Label layoutX="25.0" layoutY="28.0" prefHeight="45.0" prefWidth="188.0" text="Choose files to archive" textFill="WHITE">
          <font>
             <Font name="FreeSans" size="18.0" />
          </font>
       </Label>
-      <Button id="fileChooser" fx:id="btnChoose" layoutX="25.0" layoutY="73.0" mnemonicParsing="false" onAction="#filechooseHandler" text="Choose" />
       <Label fx:id="fileUrlLabel" layoutX="136.0" layoutY="73.0" prefHeight="26.0" prefWidth="362.0" text="File Path shown here" textFill="#807f7f" />
-      <Button id="fileAdder" fx:id="fileAdder" layoutX="25.0" layoutY="112.0" mnemonicParsing="false" onAction="#fileAdder" text="Add File" />
-      <ListView id="listView" fx:id="listView" layoutX="25.0" layoutY="144.0" prefHeight="200.0" prefWidth="390.0" />
-      <Button id="fileCompressor" fx:id="compressBtn" layoutX="460.0" layoutY="144.0" mnemonicParsing="false" onAction="#fileOnCompress" text="Compress" />
-      <Button id="fileDecompressor" fx:id="decompressBtn" layoutX="455.0" layoutY="181.0" mnemonicParsing="false" onAction="#fileDecompressBtn" text="Decompress" />
-      <Button fx:id="backBtn" layoutX="25.0" layoutY="351.0" mnemonicParsing="false" onAction="#backToHomePage" text="Back" />
+      <Button id="fileAdder" fx:id="fileAdder" layoutX="25.0" layoutY="73.0" mnemonicParsing="false" onAction="#fileAdder" stylesheets="@application.css" text="Add File" />
+      <ListView id="listView" fx:id="listView" layoutX="25.0" layoutY="144.0" prefHeight="200.0" prefWidth="390.0">
+         <stylesheets>
+            <URL value="@application.css" />
+            <URL value="@application.css" />
+         </stylesheets></ListView>
+      <Button id="fileCompressor" fx:id="compressBtn" layoutX="432.0" layoutY="148.0" mnemonicParsing="false" onAction="#fileOnCompress" prefHeight="39.0" prefWidth="114.0" stylesheets="@application.css" text="Compress" />
+      <Button id="fileDecompressor" fx:id="decompressBtn" layoutX="432.0" layoutY="197.0" mnemonicParsing="false" onAction="#fileDecompressBtn" prefHeight="39.0" prefWidth="114.0" stylesheets="@application.css" text="Decompress" />
+      <Button id="backBtn" fx:id="backBtn" layoutX="25.0" layoutY="351.0" mnemonicParsing="false" onAction="#backToHomePage" prefHeight="30.0" prefWidth="67.0" stylesheets="@application.css" text="Back" />
+      <Button id="deleteBtn" fx:id="deleteSelected" layoutX="26.0" layoutY="106.0" mnemonicParsing="false" onAction="#fileDeleteHandler" prefHeight="26.0" prefWidth="137.0" stylesheets="@application.css" text="Delete Selected" />
    </children>
 </AnchorPane>

@@ -12,11 +12,11 @@ import javafx.collections.ObservableList;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 public class FileZipperController {
 
-    @FXML
-    private Button btnChoose;
+    
 
     @FXML
     private Button compressBtn;
@@ -29,6 +29,9 @@ public class FileZipperController {
 
     @FXML
     private Label fileUrlLabel;
+    
+    @FXML
+    private Button deleteSelected;
 
     @FXML
     private ListView<String> listView;
@@ -36,10 +39,13 @@ public class FileZipperController {
     private File file;
     DirectoryChooser dc = new DirectoryChooser();
     FileChooser fc = new FileChooser();
-    Zipper zipper;
+    Zipper zipper = new Zipper();
 
     @FXML
     void fileAdder(ActionEvent event) {
+        fc.setTitle("Choose file to add: ");
+        file = fc.showOpenDialog(new Stage());
+        fileUrlLabel.setText(file.getAbsolutePath());
         if (file != null) {
             ObservableList<String> items = listView.getItems();
             items.add(file.getAbsolutePath());
@@ -47,21 +53,41 @@ public class FileZipperController {
     }
 
     @FXML
-    void fileDecompressBtn(ActionEvent event) {
-
+    void fileDecompressBtn(ActionEvent event) throws IOException {
+        try {
+            fc.setTitle("Choose zip file");
+            File zipFile = fc.showOpenDialog(new Stage());
+            zipper = new Zipper(zipFile.getAbsolutePath());
+            dc.setTitle("Choose path to extract zip contents");
+            File pathToExtract = dc.showDialog(new Stage());
+            zipper.extract(pathToExtract.getAbsolutePath());
+            JOptionPane.showMessageDialog(null, "Successfully extracted to: " + pathToExtract.getAbsolutePath(), "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error while unzipping the package", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     @FXML
-    void fileOnCompress(ActionEvent event) {
-        
+    void fileOnCompress(ActionEvent event) throws IOException {
+        try {
+            dc.setTitle("Choose directory to save compressed zip archive");
+            File pathToSave = dc.showDialog(new Stage());
+            String archive = JOptionPane.showInputDialog("Enter zip file name to archive");
+            String finalPath = pathToSave + File.separator + archive;
+            String files[];
+            ObservableList<String> items = listView.getItems();
+            files = items.toArray(String[]::new);
+            zipper.compress(finalPath, files);
+            JOptionPane.showMessageDialog(null, "Successfully archived to: " + finalPath, "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error! Cannot archive items" + e.getMessage() , "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
-
+    
     @FXML
-    void filechooseHandler(ActionEvent event) throws IOException {
-        fc.setTitle("Choose file to add: ");
-        file = fc.showOpenDialog(new Stage());
-        fileUrlLabel.setText(file.getAbsolutePath());
-        
+    void fileDeleteHandler(ActionEvent event) {
+        String selectedFile = listView.getSelectionModel().getSelectedItem();
+        listView.getItems().remove(selectedFile);
     }
     
     @FXML

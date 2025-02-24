@@ -1,20 +1,77 @@
-#pane01 {
-    -fx-background-color: darkcyan;
-    -fx-background-radius: 20px;
+#AnchorPane {
+    -fx-background-color: #262626;
+    -fx-text-fill: white;
 }
-
+#pane01 {
+    -fx-background-color: #0077ff;
+    -fx-background-radius: 10px;
+}
+#appLabel {
+    -fx-font-family: "Freesans";
+    
+}
 #text-mid {
     -fx-text-fill: #ffff;
 }
 #text-sm {
     -fx-text-fill: #ffff;
 }
-#btnOnAction {
+#btnOnAction{
     -fx-font-family: "Freesans";
-    -fx-background-color: darkcyan;
-    -fx-text-fill: white;
-    -fx-background-radius: 20px;
+    -fx-background-color: #ffff;
+    -fx-text-fill: #0077ff;
+    -fx-background-radius: 10px;
 }
 #btnOnAction:hover {
-    -fx-background-color: cyan;
+    -fx-background-color: #a1a1a1;
+}
+#encoder, #decoder, #backBtn {
+        -fx-font-family: "Freesans";
+    -fx-background-color: #0077ff;
+    -fx-text-fill: white;
+    -fx-background-radius: 10px;
+}
+#backBtn {
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+}
+#encoder:hover, #decoder:hover, #backBtn:hover {
+    -fx-background-color: #267cfc;
+}
+#choiceBox {
+    -fx-font-family: "Freesans";
+    -fx-background-color: #1c1c1c;
+    -fx-mark-color: #0077ff;
+}
+
+#fileAdder, #fileCompressor {
+    -fx-font-family: "Freesans";
+    -fx-background-color: #0077ff;
+    -fx-text-fill: white;
+    -fx-background-radius: 10px;
+}
+#deleteBtn {
+    -fx-font-family: "Freesans";
+    -fx-background-color: #fa0202;
+    -fx-text-fill: white;
+    -fx-background-radius: 10px;
+}
+
+#fileDecompressor {
+    -fx-font-family: "Freesans";
+    -fx-background-color: #fafa02;
+    -fx-text-fill: black;
+    -fx-background-radius: 10px;
+}
+
+#fileDecompressor:hover {
+    -fx-background-color: #8db800;
+}
+
+#listView {
+    -fx-mark-selected: #0077ff;
+    -fx-font-family: "Freesans";
+    -fx-text-fill: #fff;
+    -fx-background-color: #1c1c1c;
+    -fx-background-radius: 10px;
 }

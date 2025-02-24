@@ -13,11 +13,14 @@ import javax.swing.JOptionPane;
 
 public class Zipper {
     private String path;
+    public Zipper() {
+//        Default Constructor
+    }
     public Zipper(String path){
         this.path=path;
     }
     
-    public void compress(String...files) throws FileNotFoundException, IOException{
+    public void compress(String path, String...files) throws FileNotFoundException, IOException{
         ZipOutputStream zos=new ZipOutputStream(new FileOutputStream(path));
         for(String f: files){
             File file=new File(f);
@@ -38,7 +41,7 @@ public class Zipper {
     }
     
     public void extract(String dir) throws FileNotFoundException, IOException{
-        ZipInputStream zin=new ZipInputStream(new FileInputStream(path));
+        ZipInputStream zin=new ZipInputStream(new FileInputStream(this.path));
         ZipEntry entry=null;
         while( (entry=zin.getNextEntry())!=null){
             int len;

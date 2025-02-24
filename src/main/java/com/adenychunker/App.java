@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  * JavaFX App
@@ -22,6 +23,13 @@ public class App extends Application {
         stage.setScene(scene);
         stage.setTitle("AdenyChunker(Beta) - Encode your text files, compress video and archives");
         stage.show();
+        stage.setOnCloseRequest(event -> {
+            event.consume();
+            int confirm = JOptionPane.showConfirmDialog(null, "Are you sure want to exit", "Confirm", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                stage.close();
+            }
+        });
     }
 
     static void setRoot(String fxml) throws IOException {

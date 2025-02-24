@@ -1,4 +1,4 @@
-package lzw;
+package com.adenychunker.classes.algorithms;
 
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
@@ -20,7 +20,7 @@ public class LempelZivWelch {
     private static List<Integer> result=new ArrayList<>();
     private static long inputSize;
     private static long compressedSize;
-    LempelZivWelch(){
+    public LempelZivWelch(){
         this.result=result;
     }
     

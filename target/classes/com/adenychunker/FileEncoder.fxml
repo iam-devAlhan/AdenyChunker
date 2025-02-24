@@ -4,15 +4,19 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adenychunker.FileEncoderController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adenychunker.FileEncoderController">
    <children>
-      <Label layoutX="24.0" layoutY="31.0" prefHeight="36.0" prefWidth="554.0" text="Compress, encode and decode your text file and compressed, Useful for .csv, .txt, .json files. Choose your algorithm for encoding and decoding such as Huffman or LZW" wrapText="true" />
-      <Button id="encoder" fx:id="encoderBtn" layoutX="24.0" layoutY="174.0" mnemonicParsing="false" onAction="#encodeDataFromFile" prefHeight="26.0" prefWidth="181.0" text="Upload file to encode" />
-      <Button id="decoder" fx:id="decoderBtn" layoutX="24.0" layoutY="249.0" mnemonicParsing="false" onAction="#decodeDataFromFile" prefHeight="26.0" prefWidth="181.0" text="Upload file to decode" />
-      <Button id="backBtn" fx:id="backBtn" layoutX="26.0" layoutY="345.0" mnemonicParsing="false" onAction="#backToHomePage" text="Back" />
-      <Label fx:id="filePathLabel" layoutX="26.0" layoutY="206.0" prefHeight="36.0" prefWidth="537.0" text="Upload .txt, .csv or .json for encoding" />
-      <Label fx:id="filePathLabel1" layoutX="26.0" layoutY="282.0" prefHeight="36.0" prefWidth="537.0" text="Upload .ctxt, .ccsv, .cjson for decoding huffman encoded and for lzw : .ltxt, .lcsv, .ljson" />
-      <ChoiceBox fx:id="choiceBoxforAlgo" layoutX="26.0" layoutY="92.0" prefWidth="150.0" />
+      <Label layoutX="24.0" layoutY="31.0" prefHeight="75.0" prefWidth="554.0" style="-fx-font-family: &quot;FreeSans&quot;;" text="Compress, encode and decode your text file and compressed, Useful for .csv, .txt, .json files. Choose your algorithm for encoding and decoding such as Huffman or LZW" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Button id="encoder" fx:id="encoderBtn" layoutX="24.0" layoutY="174.0" mnemonicParsing="false" onAction="#encodeDataFromFile" prefHeight="26.0" prefWidth="181.0" stylesheets="@application.css" text="Upload file to encode" />
+      <Button id="decoder" fx:id="decoderBtn" layoutX="24.0" layoutY="249.0" mnemonicParsing="false" onAction="#decodeDataFromFile" prefHeight="26.0" prefWidth="181.0" stylesheets="@application.css" text="Upload file to decode" />
+      <Button id="backBtn" fx:id="backBtn" layoutX="26.0" layoutY="345.0" mnemonicParsing="false" onAction="#backToHomePage" prefHeight="38.0" prefWidth="69.0" stylesheets="@application.css" text="Back" />
+      <Label fx:id="filePathLabel" layoutX="26.0" layoutY="206.0" prefHeight="36.0" prefWidth="537.0" text="Upload .txt, .csv or .json for encoding" textFill="#909090" />
+      <Label fx:id="filePathLabel1" layoutX="26.0" layoutY="282.0" prefHeight="36.0" prefWidth="537.0" text="Upload .ctxt, .ccsv, .cjson for decoding huffman encoded and for LZW : .ltxt, .lcsv, .ljson" textFill="#a4a4a4" />
+      <ChoiceBox id="choiceBox" fx:id="choiceBoxforAlgo" layoutX="26.0" layoutY="112.0" prefHeight="44.0" prefWidth="181.0" stylesheets="@application.css" />
    </children>
 </AnchorPane>
