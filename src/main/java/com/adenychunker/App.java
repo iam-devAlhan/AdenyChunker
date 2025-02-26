@@ -1,5 +1,6 @@
 package com.adenychunker;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.scene.image.Image;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +24,8 @@ public class App extends Application {
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
         stage.setTitle("AdenyChunker(Beta) - Encode your text files, compress video and archives");
+        Image appIcon = new Image(getClass().getResource("assets/icon.png").toExternalForm());
+        stage.getIcons().add(appIcon);
         stage.show();
         stage.setOnCloseRequest(event -> {
             event.consume();

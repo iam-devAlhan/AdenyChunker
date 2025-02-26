@@ -42,6 +42,7 @@
     -fx-font-family: "Freesans";
     -fx-background-color: #1c1c1c;
     -fx-mark-color: #0077ff;
+    -fx-text-fill: #ffff;
 }
 
 #fileAdder, #fileCompressor {
