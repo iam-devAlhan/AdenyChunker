@@ -58,6 +58,13 @@
     -fx-background-radius: 10px;
 }
 
+#deleteBtn:hover {
+    -fx-background-color: #a60202;
+}
+
+#fileAdder:hover, #fileCompressor:hover {
+    -fx-background-color: #267cfc;
+}
 #fileDecompressor {
     -fx-font-family: "Freesans";
     -fx-background-color: #fafa02;
